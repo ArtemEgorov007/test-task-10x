@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv image.png jerome-bell.png)",
+      "Bash(mv image2.png kristin-watson.png)",
+      "Bash(mv image3.png dianne-russell.png)",
+      "Bash(mv image4.png marvin-mckinney.png)",
+      "Bash(mv image5.png kathryn-murphy.png)",
+      "Bash(open *)",
+      "Bash(npm run *)"
+    ]
+  }
+}

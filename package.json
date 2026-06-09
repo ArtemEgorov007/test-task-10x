@@ -1,0 +1,12 @@
+{
+  "name": "test-task-10x",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "sass scss/style.scss:css/style.css --style compressed --no-source-map",
+    "dev": "sass --watch scss/style.scss:css/style.css"
+  },
+  "devDependencies": {
+    "sass": "^1.77.6"
+  }
+}
