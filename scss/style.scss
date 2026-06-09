@@ -282,6 +282,7 @@ input {
     0 12px 10px -6px rgba(154, 156, 165, 0.04);
   transition: box-shadow 0.22s, transform 0.22s;
   min-height: 438px;
+  cursor: pointer;
 
   &:hover {
     box-shadow:
