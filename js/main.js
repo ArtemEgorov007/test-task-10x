@@ -7,7 +7,7 @@ const courses = [
     category: 'Marketing',
     price: 100,
     author: 'Jerome Bell',
-    img: 'assets/mentors/brooklyn-simmons.png',
+    img: 'assets/mentors/jerome-bell.png',
   },
   {
     id: 2,
@@ -15,15 +15,15 @@ const courses = [
     category: 'Management',
     price: 480,
     author: 'Marvin McKinney',
-    img: 'assets/mentors/leslie-alexander.png',
+    img: 'assets/mentors/marvin-mckinney.png',
   },
   {
     id: 3,
     title: 'HR Management and Analytics',
     category: 'HR & Recruiting',
     price: 200,
-    author: 'Leslie Alexander LI',
-    img: 'assets/mentors/guy-hawkins.png',
+    author: 'Leslie Alexander',
+    img: 'assets/mentors/leslie-alexander.png',
   },
   {
     id: 4,
@@ -31,7 +31,7 @@ const courses = [
     category: 'Marketing',
     price: 530,
     author: 'Kristin Watson',
-    img: 'assets/mentors/kathryn-murphy.png',
+    img: 'assets/mentors/kristin-watson.png',
   },
   {
     id: 5,
@@ -39,7 +39,7 @@ const courses = [
     category: 'Design',
     price: 500,
     author: 'Guy Hawkins',
-    img: 'assets/mentors/marvin-mckinney.png',
+    img: 'assets/mentors/guy-hawkins.png',
   },
   {
     id: 6,
@@ -55,7 +55,7 @@ const courses = [
     category: 'Development',
     price: 600,
     author: 'Brooklyn Simmons',
-    img: 'assets/mentors/boston-jimmons.png',
+    img: 'assets/mentors/brooklyn-simmons.png',
   },
   {
     id: 8,
@@ -63,7 +63,7 @@ const courses = [
     category: 'HR & Recruiting',
     price: 150,
     author: 'Kathryn Murphy',
-    img: 'assets/mentors/kristin-watson.png',
+    img: 'assets/mentors/kathryn-murphy.png',
   },
   {
     id: 9,
@@ -119,7 +119,7 @@ const courses = [
     category: 'Development',
     price: 490,
     author: 'Jerome Bell',
-    img: 'assets/mentors/guy-hawkins.png',
+    img: 'assets/mentors/jerome-bell.png',
   },
 ];
 
@@ -186,9 +186,22 @@ function createCardHTML(course) {
 
 // ─── Render ───────────────────────────────────────────────────────────────────
 
+function updateFilterCounts() {
+  const query = searchQuery.trim().toLowerCase();
+  const base = !query ? courses : courses.filter(c => c.title.toLowerCase().includes(query));
+  filterBtns.forEach(btn => {
+    const cat = btn.dataset.category;
+    const count = cat === 'all' ? base.length : base.filter(c => c.category === cat).length;
+    const sup = btn.querySelector('sup');
+    if (sup) sup.textContent = count;
+  });
+}
+
 function render() {
   const filtered = getFiltered();
   const visible  = filtered.slice(0, currentPage * PER_PAGE);
+
+  updateFilterCounts();
 
   if (filtered.length === 0) {
     grid.innerHTML = '<p class="courses__empty">No courses found</p>';
@@ -208,8 +221,12 @@ filterBtns.forEach(btn => {
     activeCategory = btn.dataset.category;
     currentPage    = 1;
 
-    filterBtns.forEach(b => b.classList.remove('courses__filter--active'));
+    filterBtns.forEach(b => {
+      b.classList.remove('courses__filter--active');
+      b.setAttribute('aria-pressed', 'false');
+    });
     btn.classList.add('courses__filter--active');
+    btn.setAttribute('aria-pressed', 'true');
 
     render();
   });

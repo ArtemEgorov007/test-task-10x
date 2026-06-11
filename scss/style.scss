@@ -117,7 +117,7 @@ input {
     font-weight: 700;
     font-size: 46px;
     line-height: 130%;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     color: #000;
   }
 
@@ -171,6 +171,11 @@ input {
       color: $c-accent;
     }
 
+    &:focus-visible {
+      outline: 2px solid $c-accent;
+      outline-offset: 2px;
+    }
+
     &--active {
       border: 1px solid $c-accent;
       color: $c-accent;
@@ -202,6 +207,12 @@ input {
     &::-webkit-search-cancel-button { display: none; }
 
     &:focus { border-color: #D1D5DB; }
+
+    &:focus-visible {
+      border-color: $c-accent;
+      outline: 2px solid rgba(255, 63, 58, 0.2);
+      outline-offset: 0;
+    }
   }
 
   &__search-icon {
@@ -252,7 +263,7 @@ input {
     font-weight: 600;
     font-size: 16px;
     line-height: 160%;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     vertical-align: middle;
 
     svg {
@@ -336,7 +347,7 @@ input {
     font-weight: 600;
     font-size: 18px;
     line-height: 150%;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     color: #000;
   }
 
@@ -351,7 +362,7 @@ input {
     font-weight: 600;
     font-size: 18px;
     line-height: 150%;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     color: $c-price;
   }
 
@@ -360,7 +371,7 @@ input {
     font-weight: 400;
     font-size: 18px;
     line-height: 150%;
-    letter-spacing: 0%;
+    letter-spacing: 0;
   }
 }
 
